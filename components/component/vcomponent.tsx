@@ -2,9 +2,11 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { JSX, SVGProps } from "react"
+import { ClerkProvider, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 export function Vcomponent() {
   return (
+    <ClerkProvider>
     <div className="flex flex-col min-h-screen">
       <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
         <Link href="#" className="flex items-center gap-2 text-2xl font-bold" prefetch={false}>
@@ -12,12 +14,14 @@ export function Vcomponent() {
           Meal Planner
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="#" className="text-sm font-medium" prefetch={false}>
+          <SignedOut>
+          <Link href="/sign-in" className="text-sm font-medium" prefetch={false}>
             Login
           </Link>
-          <Button variant="outline" className="px-6 py-2 text-sm font-medium bg-black text-white">
-            Sign Up
-          </Button>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
         </div>
       </header>
       <main className="flex-1 bg-background">
@@ -290,6 +294,7 @@ export function Vcomponent() {
         </div>
       </footer>
     </div>
+    </ClerkProvider>
   )
 }
 

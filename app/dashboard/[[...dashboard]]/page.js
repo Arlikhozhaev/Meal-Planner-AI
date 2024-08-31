@@ -22,6 +22,29 @@ export default function DashboardPage() {
           </SignedIn>
         </div>
       </header>
+    <main>
+            
+    </main>
+      <footer className="bg-black text-white py-4 px-6 flex flex-col sm:flex-row items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <p className="text-sm">Copyright &copy; 2024 Meal Planner</p>
+            <Link href="#" className="text-sm hover:underline" prefetch={false}>
+              Privacy Policy
+            </Link>
+            <Link href="#" className="text-sm hover:underline" prefetch={false}>
+              Terms of Service
+            </Link>
+            <Link href="https://www.instagram.com/meal_planner.ai/" className="text-sm hover:underline" prefetch={false}>
+              Instagram
+            </Link>
+            <Link href="#" className="text-sm hover:underline" prefetch={false}>
+              Email
+            </Link>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <p className="text-sm">Contact: 555-555-5555</p>
+          </div>
+        </footer>
     </ClerkProvider>
   );
 }

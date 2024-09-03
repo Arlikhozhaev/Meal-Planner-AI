@@ -2,6 +2,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { JSX, SVGProps } from "react"
+import Image from "next/image"
+import myImage from '@/public/picture.svg'
 
 export function Vcomponent() {
   return (
@@ -23,7 +25,8 @@ export function Vcomponent() {
       <main className="flex-1 bg-background">
         <section className="flex items-center justify-center h-[80vh] bg-[#f5f5f5]">
           <div className="text-center space-y-6 max-w-md">
-            <h1 className="text-4xl font-bold">Personalized Meal Plans</h1>
+            <Image src={myImage} alt="Here is some food"/>
+            <h1 className="text-4xl font-bold" style={{ marginTop: '0'}}>Personalized Meal Plans</h1>
             <p className="text-muted-foreground">
               Let our AI-powered system create delicious and nutritious meals tailored to your preferences.
             </p>

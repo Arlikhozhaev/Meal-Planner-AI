@@ -16,6 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="description" content="Personalized AI meal planner to help you achieve your health goals with custom meal plans." />
+      <meta name="keywords" content="AI meal planner, custom meal plans, healthy eating, diet planning" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <body className={inter.className}>{children}</body>
     </html>
   );

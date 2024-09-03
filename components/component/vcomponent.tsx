@@ -2,35 +2,48 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { JSX, SVGProps } from "react"
-import Image from "next/image"
-import myImage from '@/public/picture.svg'
 
 export function Vcomponent() {
+  
+  const { user, isLoaded, isSignedIn } = useUser();
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      router.push('/dashboard'); // Replace '/dashboard' with your desired route
+    }
+  }, [isLoaded, isSignedIn, router]);
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
-        <Link href="#" className="flex items-center gap-2 text-2xl font-bold" prefetch={false}>
-          <LeafIcon className="w-6 h-6" />
-          Meal Planner
-        </Link>
-        <div className="flex items-center gap-4">
-          <Link href="#" className="text-sm font-medium" prefetch={false}>
-            Login
+      <div className="flex flex-col min-h-screen">
+        <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
+          <Link href="#" className="flex items-center gap-2 text-2xl font-bold" prefetch={false}>
+            <LeafIcon className="w-6 h-6" />
+            Meal Planner
           </Link>
-          <Button variant="outline" className="px-6 py-2 text-sm font-medium bg-black text-white">
-            Sign Up
-          </Button>
-        </div>
-      </header>
-      <main className="flex-1 bg-background">
+          <div className="flex items-center gap-4">
+            <SignedOut>
+              <Link href="/sign-in" className="text-sm font-medium" prefetch={false}>
+                Login
+              </Link>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+        </header>
+        <main className="flex-1 bg-background">
         <section className="flex items-center justify-center h-[80vh] bg-[#f5f5f5]">
           <div className="text-center space-y-6 max-w-md">
-            <Image src={myImage} alt="Here is some food"/>
-            <h1 className="text-4xl font-bold" style={{ marginTop: '0'}}>Personalized Meal Plans</h1>
+            <h1 className="text-4xl font-bold">Personalized Meal Plans</h1>
             <p className="text-muted-foreground">
               Let our AI-powered system create delicious and nutritious meals tailored to your preferences.
             </p>
-            <Button className="px-8 py-3 text-lg font-medium">Get Started</Button>
+            <Link href="/sign-in" className="text-sm font-medium" prefetch={false}>
+              <Button className="px-8 py-3 text-lg font-medium">              
+                Get Started
+              </Button>
+            </Link>
           </div>
         </section>
         <section className="bg-muted py-12 px-6">
@@ -271,29 +284,30 @@ export function Vcomponent() {
             </Accordion>
           </div>
         </section>
-      </main>
-      <footer className="bg-black text-white py-4 px-6 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          <p className="text-sm">Copyright &copy; 2024 Meal Planner</p>
-          <Link href="#" className="text-sm hover:underline" prefetch={false}>
-            Privacy Policy
-          </Link>
-          <Link href="#" className="text-sm hover:underline" prefetch={false}>
-            Terms of Service
-          </Link>
-          <Link href="https://www.instagram.com/meal_planner.ai/" className="text-sm hover:underline" prefetch={false}>
-            Instagram
-          </Link>
-          <Link href="#" className="text-sm hover:underline" prefetch={false}>
-            Email
-          </Link>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          <p className="text-sm">Contact: 555-555-5555</p>
-        </div>
-      </footer>
-    </div>
-  )
+        </main>
+        <footer className="bg-black text-white py-4 px-6 flex flex-col sm:flex-row items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <p className="text-sm">Copyright &copy; 2024 Meal Planner</p>
+            <Link href="#" className="text-sm hover:underline" prefetch={false}>
+              Privacy Policy
+            </Link>
+            <Link href="#" className="text-sm hover:underline" prefetch={false}>
+              Terms of Service
+            </Link>
+            <Link href="https://www.instagram.com/meal_planner.ai/" className="text-sm hover:underline" prefetch={false}>
+              Instagram
+            </Link>
+            <Link href="#" className="text-sm hover:underline" prefetch={false}>
+              Email
+            </Link>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <p className="text-sm">Contact: 555-555-5555</p>
+          </div>
+        </footer>
+      </div>
+
+  );
 }
 
 function BoltIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {

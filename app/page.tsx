@@ -1,4 +1,10 @@
 import { Vcomponent } from "@/components/component/vcomponent";
+import { ClerkProvider } from "@clerk/nextjs";
+
 export default function Home() {
-  return <Vcomponent />
+  return (
+    <ClerkProvider>
+      <Vcomponent />
+    </ClerkProvider>
+  );
 }

@@ -29,17 +29,12 @@ export default function DashboardPage() {
               <ul style={{ listStyleType: 'none', padding: 0 }}>
                 <li>
                   <Link href="#" style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', hover: { backgroundColor: '#4b5563' } }}>
-                    Dashboard
+                    Meal Planner
                   </Link>
                 </li>
                 <li>
                   <Link href="#" style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', hover: { backgroundColor: '#4b5563' } }}>
-                    Meals
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', hover: { backgroundColor: '#4b5563' } }}>
-                    Shopping List
+                    Saved Meals
                   </Link>
                 </li>
                 <li>

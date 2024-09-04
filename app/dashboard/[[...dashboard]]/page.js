@@ -6,26 +6,55 @@ import Link from 'next/link';
 export default function DashboardPage() {
   return (
     <ClerkProvider>
-      <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
-        <Link href="#" className="flex items-center gap-2 text-2xl font-bold" prefetch={false}>
-          <LeafIcon className="w-6 h-6" />
-          Meal Planner
-        </Link>
-        <div className="flex items-center gap-4">
-          <SignedOut>
-            <Link href="/sign-in" className="text-sm font-medium" prefetch={false}>
-              Login
-            </Link>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <header style={{ backgroundColor: '#1f2937', color: '#f9fafb', padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Link href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.5rem', fontWeight: 'bold', color: '#f9fafb' }} prefetch={false}>
+            <LeafIcon style={{ width: '24px', height: '24px' }} />
+            Meal Planner
+          </Link>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <SignedOut>
+              <Link href="/sign-in" style={{ fontSize: '0.875rem', fontWeight: 'medium', color: '#f9fafb' }} prefetch={false}>
+                Login
+              </Link>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+        </header>
+        <div style={{ display: 'flex', flex: '1' }}>
+          <aside style={{ backgroundColor: '#374151', color: '#f9fafb', width: '16rem', padding: '1rem' }}>
+            <nav>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <li>
+                  <Link href="#" style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', hover: { backgroundColor: '#4b5563' } }}>
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', hover: { backgroundColor: '#4b5563' } }}>
+                    Meals
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', hover: { backgroundColor: '#4b5563' } }}>
+                    Shopping List
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', hover: { backgroundColor: '#4b5563' } }}>
+                    Settings
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+          <main style={{ flex: '1', padding: '1.5rem' }}>
+            {/* Main content goes here */}
+          </main>
         </div>
-      </header>
-    <main>
-            
-    </main>
-      <footer className="bg-black text-white py-4 px-6 flex flex-col sm:flex-row items-center justify-between">
+        <footer className="bg-black text-white py-4 px-6 flex flex-col sm:flex-row items-center justify-between">
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <p className="text-sm">Copyright &copy; 2024 Meal Planner</p>
             <Link href="#" className="text-sm hover:underline" prefetch={false}>
@@ -45,6 +74,7 @@ export default function DashboardPage() {
             <p className="text-sm">Contact: 555-555-5555</p>
           </div>
         </footer>
+      </div>
     </ClerkProvider>
   );
 }

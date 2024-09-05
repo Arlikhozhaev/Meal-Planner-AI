@@ -105,6 +105,8 @@ export async function POST(req, res) {
     const mealPlan = JSON.parse(completion.choices[0].message.content)
 
   // Return the meal plan as a JSON response
+      console.log(mealPlan)
+
     return NextResponse.json(mealPlan)
 
     } catch (error) {

@@ -40,7 +40,7 @@ const MealPlanGenerator = () => {
     
     try {
       await addDoc(collection(db, 'mealPlans'), mealPlan);
-      alert('Meal plan saved to Firebase!');
+      alert('Your Meal Plan has been saved!');
     } catch (err) {
       setError('An error occurred while saving the meal plan.');
       console.error(err);
@@ -136,7 +136,7 @@ const MealPlanGenerator = () => {
               onClick={saveMealPlanToFirebase} 
               className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
             >
-              Save to Firebase
+              Save Your Meal Plan
             </button>
           </div>
         </div>

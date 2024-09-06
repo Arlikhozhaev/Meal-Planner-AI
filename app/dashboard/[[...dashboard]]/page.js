@@ -1,10 +1,10 @@
-// app/dashboard/page.jsx or wherever your DashboardPage component is located
 'use client';
 
 import React, { useState } from 'react';
 import { ClerkProvider, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
-import MealPlanGenerator from '../../meal-planner/page'; // Ensure correct path
+import MealPlanGenerator from '../../meal-planner/page'; 
+import SavedMeals from '../../saved-meals/page'; // Ensure correct path
 
 export default function DashboardPage() {
   const [selectedContent, setSelectedContent] = useState('meal-planner');
@@ -14,7 +14,7 @@ export default function DashboardPage() {
       case 'meal-planner':
         return <MealPlanGenerator />;
       case 'saved-meals':
-        return <div>Saved Meals Content</div>; // Adjust as needed
+        return <SavedMeals />;
       case 'settings':
         return <div>Settings Content</div>; // Adjust as needed
       default:

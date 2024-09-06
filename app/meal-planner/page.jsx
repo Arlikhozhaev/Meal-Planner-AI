@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useState } from 'react';
 
 const MealPlanGenerator = () => {
@@ -69,11 +70,61 @@ const MealPlanGenerator = () => {
         </button>
       </form>
 
-      
-          
-          
-        
-      
+      {/* Render meal plan details */}
+      {mealPlan && (
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold mb-4">Generated Meal Plan for {mealPlan.date}</h2>
+          <div className="bg-gray-100 p-4 rounded">
+            <p className="font-bold">Total Calories: {mealPlan.total_calories}</p>
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold">Meals:</h3>
+              {Object.entries(mealPlan.meals).map(([mealType, mealDetails]) => (
+                <div key={mealType} className="mt-4">
+                  <h4 className="font-medium">{mealType.charAt(0).toUpperCase() + mealType.slice(1)}</h4>
+                  {mealDetails.main_dish && (
+                    <div>
+                      <h5 className="font-semibold">Main Dish:</h5>
+                      <p>{mealDetails.main_dish.name}</p>
+                      <p>{mealDetails.main_dish.description}</p>
+                      <p>Calories: {mealDetails.main_dish.calories}</p>
+                    </div>
+                  )}
+                  {mealDetails.side_dish && (
+                    <div>
+                      <h5 className="font-semibold">Side Dish:</h5>
+                      <p>{mealDetails.side_dish.name}</p>
+                      <p>{mealDetails.side_dish.description}</p>
+                      <p>Calories: {mealDetails.side_dish.calories}</p>
+                    </div>
+                  )}
+                  {mealDetails.beverage && (
+                    <div>
+                      <h5 className="font-semibold">Beverage:</h5>
+                      <p>{mealDetails.beverage.name}</p>
+                      <p>{mealDetails.beverage.description}</p>
+                      <p>Calories: {mealDetails.beverage.calories}</p>
+                    </div>
+                  )}
+                  {mealDetails.name && !mealDetails.main_dish && !mealDetails.side_dish && !mealDetails.beverage && (
+                    <div>
+                      <h5 className="font-semibold">{mealType.charAt(0).toUpperCase() + mealType.slice(1)}:</h5>
+                      <p>{mealDetails.name}</p>
+                      <p>{mealDetails.description}</p>
+                      <p>Calories: {mealDetails.calories}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div className="mt-8 p-4 bg-red-100 text-red-700 border border-red-300 rounded">
+          {error}
+        </div>
+      )}
     </div>
   );
 };

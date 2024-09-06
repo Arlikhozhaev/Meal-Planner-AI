@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { db, collection, addDoc } from '../../firebase'; // Adjust the path if necessary
 
 const MealPlanGenerator = () => {
   const [dietaryPreferences, setDietaryPreferences] = useState('');
@@ -31,6 +32,18 @@ const MealPlanGenerator = () => {
       console.error(err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const saveMealPlanToFirebase = async () => {
+    if (!mealPlan) return;
+    
+    try {
+      await addDoc(collection(db, 'mealPlans'), mealPlan);
+      alert('Meal plan saved to Firebase!');
+    } catch (err) {
+      setError('An error occurred while saving the meal plan.');
+      console.error(err);
     }
   };
 
@@ -116,6 +129,15 @@ const MealPlanGenerator = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="mt-8">
+            <button 
+              onClick={saveMealPlanToFirebase} 
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+            >
+              Save to Firebase
+            </button>
           </div>
         </div>
       )}

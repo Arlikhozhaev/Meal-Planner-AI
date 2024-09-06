@@ -15,8 +15,6 @@ export default function DashboardPage() {
         return <MealPlanGenerator />;
       case 'saved-meals':
         return <SavedMeals />;
-      case 'settings':
-        return <div>Settings Content</div>; // Adjust as needed
       default:
         return <div>Select a section</div>;
     }
@@ -59,14 +57,6 @@ export default function DashboardPage() {
                     style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', backgroundColor: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}
                   >
                     Saved Meals
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => setSelectedContent('settings')}
-                    style={{ display: 'block', padding: '0.5rem 1rem', color: '#f9fafb', textDecoration: 'none', backgroundColor: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}
-                  >
-                    Settings
                   </button>
                 </li>
               </ul>

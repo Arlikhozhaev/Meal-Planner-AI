@@ -2,7 +2,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { db, collection, getDocs } from '../../firebase'; // Adjust the path if necessary
+import {db} from '@/firebase'
+import { collection, getDocs } from "firebase/firestore"; // Adjust the path if necessary
 
 const SavedMeals = () => {
   const [savedMeals, setSavedMeals] = useState([]);

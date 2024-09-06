@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useAuth } from '@clerk/nextjs';
 import { db, collection, addDoc } from '../../firebase'; // Adjust the path if necessary
 
 const MealPlanGenerator = () => {
+  const { userId } = useAuth(); // Get the current user's ID
   const [dietaryPreferences, setDietaryPreferences] = useState('');
   const [healthGoal, setHealthGoal] = useState('');
   const [mealPlan, setMealPlan] = useState(null);
@@ -29,21 +31,26 @@ const MealPlanGenerator = () => {
       setMealPlan(data);
     } catch (err) {
       setError('An error occurred while generating the meal plan.');
-      console.error(err);
+      console.error('Meal Plan Generation Error:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
   const saveMealPlanToFirebase = async () => {
-    if (!mealPlan) return;
-    
+    if (!mealPlan || !userId) {
+      setError('No meal plan or user ID available.');
+      console.error('Meal Plan or User ID is missing');
+      return;
+    }
+
     try {
-      await addDoc(collection(db, 'mealPlans'), mealPlan);
+      const mealPlansRef = collection(db, 'users', userId, 'mealPlans');
+      await addDoc(mealPlansRef, mealPlan);
       alert('Your Meal Plan has been saved!');
     } catch (err) {
       setError('An error occurred while saving the meal plan.');
-      console.error(err);
+      console.error('Save Meal Plan Error:', err);
     }
   };
 
@@ -64,7 +71,7 @@ const MealPlanGenerator = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="healthGoal" className="block mb-2">Health Goal:</label>
+          <label htmlFor="healthGoal" className="block mb-2">Health Goal </label>
           <input
             type="text"
             id="healthGoal"

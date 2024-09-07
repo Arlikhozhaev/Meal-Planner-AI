@@ -43,7 +43,7 @@ const MealPlanGenerator = () => {
       console.error('Meal Plan or User ID is missing');
       return;
     }
-
+  
     try {
       const mealPlansRef = collection(db, 'users', userId, 'mealPlans');
       await addDoc(mealPlansRef, mealPlan);
@@ -53,7 +53,7 @@ const MealPlanGenerator = () => {
       console.error('Save Meal Plan Error:', err);
     }
   };
-
+  
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Meal Plan Generator</h1>

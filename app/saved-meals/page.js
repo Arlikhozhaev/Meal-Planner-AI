@@ -1,10 +1,11 @@
-// components/SavedMeals.jsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { db, collection, getDocs } from '../../firebase'; // Adjust the path if necessary
+import { useAuth } from '@clerk/nextjs';
+import { db, collection, getDocs } from '../../firebase';
 
 const SavedMeals = () => {
+  const { userId } = useAuth();
   const [savedMeals, setSavedMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -12,20 +13,29 @@ const SavedMeals = () => {
 
   useEffect(() => {
     const fetchSavedMeals = async () => {
+      if (!userId) {
+        setError('No user ID available.');
+        setLoading(false);
+        return;
+      }
+
       try {
-        const querySnapshot = await getDocs(collection(db, 'mealPlans'));
+        const mealPlansRef = collection(db, 'users', userId, 'mealPlans');
+        console.log('Fetching from:', mealPlansRef); // Debugging line
+        const querySnapshot = await getDocs(mealPlansRef);
         const meals = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        console.log('Fetched Meals:', meals); // Debugging line
         setSavedMeals(meals);
       } catch (err) {
         setError('Failed to load saved meals.');
-        console.error(err);
+        console.error('Fetch Saved Meals Error:', err);
       } finally {
         setLoading(false);
       }
     };
 
     fetchSavedMeals();
-  }, []);
+  }, [userId]);
 
   const handleToggleExpand = (mealPlanId) => {
     setExpandedMealPlanId(expandedMealPlanId === mealPlanId ? null : mealPlanId);

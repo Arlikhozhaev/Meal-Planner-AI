@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '@clerk/nextjs';
-import { db, collection, getDocs } from '../../firebase';
+import { db, collection, getDocs } from '../../firebase'; // Adjust the path if necessary
 
 const SavedMeals = () => {
   const { userId } = useAuth();

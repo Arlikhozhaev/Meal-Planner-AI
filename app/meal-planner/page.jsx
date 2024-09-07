@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
-import { db, collection, addDoc } from '../../firebase'; // Adjust the path if necessary
+import {db} from '@/firebase'
+import { collection, addDoc } from "firebase/firestore"; // Adjust the path if necessary
 
 const MealPlanGenerator = () => {
   const { userId } = useAuth(); // Get the current user's ID

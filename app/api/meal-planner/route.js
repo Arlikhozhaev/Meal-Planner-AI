@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const openai = new OpenAI()
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const systemPrompt = `You are a nutrition expert AI assistant. Your task is to generate a simple meal plan for one day. The meal plan should include breakfast, lunch, dinner, and two snacks. Each meal should have a main dish and optionally side dishes or beverages. Provide the meal plan in a structured JSON format.
 

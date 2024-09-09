@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { ClerkProvider, SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
+import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";

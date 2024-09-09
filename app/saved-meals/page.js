@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '@clerk/nextjs';
+import { ClerkProvider, useAuth } from '@clerk/nextjs';
 import { db, collection, getDocs } from '../../firebase';
 
 const SavedMeals = () => {
@@ -45,6 +45,7 @@ const SavedMeals = () => {
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
+    <ClerkProvider>
     <div>
       <h2 className="text-xl font-semibold mb-4">Saved Meals</h2>
       {savedMeals.length === 0 ? (
@@ -99,6 +100,7 @@ const SavedMeals = () => {
         </div>
       )}
     </div>
+    </ClerkProvider>
   );
 };
 
